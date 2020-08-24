@@ -1,0 +1,96 @@
+<!--
+  ## Introduction
+
+  The `amp-script` component allows you to run custom JavaScript.
+  Your code runs in a Web Worker, and certain restrictions apply.
+--><!-- -->
+<!doctype html>
+<html ⚡>
+<head>
+    <meta charset="utf-8">
+    <title>amp-script</title>
+    <link rel="canonical" href="self.html">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <!--
+
+      ## Setup
+
+      First, you need to import the `amp-script` extension.
+    -->
+    <script async custom-element="amp-script" src="https://cdn.ampproject.org/v0/amp-script-0.1.js"></script>
+    <style amp-custom>
+        .sample {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        .sample button {
+            background-color: #005AF0;
+            font-weight: 700;
+            color: white;
+            border: none;
+            outline: none;
+            border-radius: 12px;
+            padding: 8px 16px;
+            margin: 8px 0;
+        }
+
+        .sample button[disabled] {
+            background-color: #ccc;
+            color: #666;
+        }
+
+        #validated-input {
+            height: 26px;
+            width: 225px;
+            padding: 6px;
+            box-sizing: border-box;
+        }
+
+        .answer-text {
+            color: #555;
+            font-weight: bold;
+        }
+
+        #translated-greeting {
+            margin: 0;
+            padding-left: 4px;
+            color: #555;
+        }
+    </style>
+
+    <!--
+      For inline scripts, you need to generate a script hash.
+      Use the `data-ampdevmode` attribute to disable this requirement during development.
+      Visit [the documentation](/content/amp-dev/documentation/components/reference/amp-script-v0.1.md#script-hash) to learn more.
+    -->
+    <meta name="amp-script-src" content="sha384-ooRSRwVP7Ya4RqwF6LgpsBCfjllUaOsTt3Pu0YPgN4_0jkZZVf1owLuDa0OCa0py sha384-r00P9CEZbM38zUQ7MvMzB-dPXvaxBHSfxK2jMqNh0n9o_ii-WPF9PvKDQtHCKqEQ sha384-DNmRE8-Gxecf5BVIB5ZbpctTIiEa56TFjGKEhWG4Ys7LUdFYBcRn9fwb1NKcSzuE sha384-tvoKljCwTSMId8wpKdpz8LLZ0LX4CYPO5SHE3naqBMSpjiAXs7nqAFyDqcIyKLnu sha384-28AuuOPww1R3yKdaPfiLgMoR1IpWmqwZNYtMnTVwAJuPX_HpIe6qSXPBC-E5I0Sd sha384-iER2Cy-P1498h1B-1f3ngpVEa9NG1xIxKqg0rNkRX0e7p5s0GYdit1MRKsELIQe8 sha384-UPY0FmlOzIjSqWqMgbuaEbqIdvpGY_FzCuTAyoLdrFJb2NYf8cPWJlugA0rUbXjL
+    sha384-tvoKljCwTSMId8wpKdpz8LLZ0LX4CYPO5SHE3naqBMSpjiAXs7nqAFyDqcIyKLnu
+    sha384-28AuuOPww1R3yKdaPfiLgMoR1IpWmqwZNYtMnTVwAJuPX_HpIe6qSXPBC-E5I0Sd
+    sha384-fZQaBxFzBabP2yhhZpkYc4zA35clMkPK72glImLl0jGgLy_m9VjzZVhOdGJ52uhK">
+</head>
+
+<body>
+
+
+<!--
+    ## Personalization
+    Similarly, you can use the `navigator` object, or other means, to personalize content for your user. The following script detects the browser's language and displays a localized greeting.
+-->
+<div>
+    <amp-script layout="fixed-height" height="40" script="translation-script" class="sample">
+        <h2 id="translated-greeting"></h2>
+    </amp-script>
+    <script id="translation-script" type="text/plain" target="amp-script">
+        window.intercomSettings = {
+    app_id: "xxxxx"
+  };
+        // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/xxxxx'
+        (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/xxxx';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+
+    </script>
+</div>
+</body></html>
